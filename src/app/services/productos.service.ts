@@ -9,9 +9,7 @@ export class ProductosService {
 cargando = true;
 productos: Producto[] = [];
 productosFiltrado: Producto[] = [];
-
-  constructor( private http: HttpClient ) { 
-        this.cargarProductos();
+  constructor( private http: HttpClient ) { this.cargarProductos();
   }
 
   private cargarProductos() {
@@ -27,7 +25,7 @@ productosFiltrado: Producto[] = [];
   }
 
   getProducto( id: string ) {
-    return this.http.get(`https://angular-larezaweb.firebaseio.com/productos/${ id }.json`)
+    return this.http.get(`https://angular-larezaweb.firebaseio.com/productos/${ id }.json`);
   }
 
   buscarProducto( termino: string ) {
@@ -56,11 +54,10 @@ productosFiltrado: Producto[] = [];
     termino = termino.toLocaleLowerCase();
     this.productos.forEach( prod => {
     const tituloLower = prod.titulo.toLocaleLowerCase();
-     
-     if ( prod.categoria.indexOf( termino ) >= 0 || tituloLower.indexOf( termino ) >= 0 ) {
+    if ( prod.categoria.indexOf( termino ) >= 0 || tituloLower.indexOf( termino ) >= 0 ) {
      this.productosFiltrado.push( prod );
-     }
-});
-  }
+      }
+     });
+   }
 
 }
